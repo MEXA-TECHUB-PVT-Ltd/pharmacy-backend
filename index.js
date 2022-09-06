@@ -44,6 +44,26 @@ app.use('/customer',
 
 
 )
+////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////Staff Member APIS////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+app.use('/staff',
+    require('./apis/StaffMembers/addStaffMember'),
+    require('./apis/StaffMembers/getAllStaffMembers'),
+    require('./apis/StaffMembers/removeStaffMember'),
+    require('./apis/StaffMembers/updateStaffMember'),
+    require('./apis/StaffMembers/viewStaffMember'),
+
+
+
+
+
+
+
+
+
+
+)
    
 app.listen(PORT, () => {
     console.log(`Server is started in PORT no ${PORT}`)

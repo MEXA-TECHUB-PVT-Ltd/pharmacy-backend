@@ -27,14 +27,31 @@ const customerSchema = mongoose.Schema({
     ntnNumber:String,
     applicabletax:String
 })
-
+const staffMemberSchema = mongoose.Schema({
+    
+    employeeName: String,
+    employeeCnic:String,
+    employeeAge: String,
+    employeeGender: String,
+    employeeDob:String,
+    employeeQualification:String,
+    employeeRoles:  {
+        type: String,
+        enum: ['Manager', 'Staff', 'Delivery Man','Sales Man']
+    },
+    attendenceRecord:String,
+    Salaries:String,
+})
 const productModel = mongoose.model('product', productSchema, 'product')
 const customerModel = mongoose.model('customer', customerSchema, 'customer')
+const staffMemberModel = mongoose.model('staffMember', staffMemberSchema, 'staffMember')
+
 
 
 module.exports = {
     productModel,
-    customerModel
+    customerModel,
+    staffMemberModel
    
 
 
