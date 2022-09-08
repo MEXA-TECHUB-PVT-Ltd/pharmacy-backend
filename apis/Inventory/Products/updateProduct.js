@@ -3,8 +3,8 @@ const app = express()
 const { productModel } = require('../../../schemas')
 
 const UpdateProduct = app.put('/updateProduct', (req, res) => {
-    const maxRetailPrice= req.body.maxRetailPrice;
-    const tradePrice=maxRetailPrice*0.85;
+    // const maxRetailPrice= req.body.maxRetailPrice;
+    // const tradePrice=maxRetailPrice*0.85;
     const updateData = {
         itemName: req.body.itemName,
         itemCode: req.body.itemCode,
@@ -15,7 +15,7 @@ const UpdateProduct = app.put('/updateProduct', (req, res) => {
         expiryDate: req.body.expiryDate,
         batchNo: req.body.batchNo,
         maxRetailPrice: req.body.maxRetailPrice,
-        tradePrice: tradePrice,
+        // tradePrice: tradePrice,
     }
     const options = {
         new: true

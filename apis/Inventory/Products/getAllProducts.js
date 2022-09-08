@@ -9,6 +9,6 @@ const GetAllProducts = app.get('/getAllProducts', (req, res) => {
         } else {
             res.send(result)
         }
-    })
+    }).populate("maxRetailPrice")
 })
 module.exports = GetAllProducts

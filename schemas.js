@@ -8,8 +8,23 @@ const productSchema = mongoose.Schema({
     companyName:String,
     expiryDate:String,
     batchNo:String,
-    maxRetailPrice:String,
+    maxRetailPrice:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'MRP'
+    }],
+})
+const MRPSchema = mongoose.Schema({
+    productId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'product'
+    },
+    customerId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'customer'
+    },
+    MRPprice:String,
     tradePrice:String
+
 })
 const customerSchema = mongoose.Schema({
     typeOfCustomer:  {
@@ -45,13 +60,16 @@ const staffMemberSchema = mongoose.Schema({
 const productModel = mongoose.model('product', productSchema, 'product')
 const customerModel = mongoose.model('customer', customerSchema, 'customer')
 const staffMemberModel = mongoose.model('staffMember', staffMemberSchema, 'staffMember')
+const MRPModel = mongoose.model('MRP', MRPSchema, 'MRP')
+
 
 
 
 module.exports = {
     productModel,
     customerModel,
-    staffMemberModel
+    staffMemberModel,
+    MRPModel
    
 
 

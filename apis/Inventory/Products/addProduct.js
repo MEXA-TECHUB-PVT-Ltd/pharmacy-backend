@@ -14,8 +14,8 @@ const CreateProduct = app.post('/addProduct', (req, res) => {
         companyName: req.body.companyName,
         expiryDate: req.body.expiryDate,
         batchNo: req.body.batchNo,
-        maxRetailPrice: req.body.maxRetailPrice,
-        tradePrice: tradePrice,
+        maxRetailPrice: [],
+        // tradePrice: tradePrice,
 
     })
     product.save((error, result) => {
