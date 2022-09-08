@@ -22,6 +22,8 @@ const MRPSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'customer'
     },
+    customerName:String,
+    customerType:String,
     MRPprice:String,
     tradePrice:String
 

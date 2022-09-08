@@ -9,6 +9,6 @@ const GetUserProfile = app.get('/getProductMRP', (req, res) => {
         } else {
             res.send(result)
         }
-    })
+    }).populate("customerId")
 })
 module.exports = GetUserProfile
