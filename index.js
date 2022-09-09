@@ -11,9 +11,9 @@ app.use(cors())
 // View Engine Setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
- 
 
-app.get('/', function(req, res){
+
+app.get('/', function (req, res) {
     res.send('<h1>Working</h1>')
 })
 ////////////////////////////////////////////////////////////////////////////////
@@ -43,6 +43,22 @@ app.use('/customer',
     require('./apis/Customers/crud/editCustomer'),
     require('./apis/Customers/crud/viewAllCustomers'),
     require('./apis/Customers/crud/viewCustomer'),
+    // Supply Order 
+    require('./apis/Customers/SupplyOrder/addSupplyOrder'),
+    require('./apis/Customers/SupplyOrder/deleteSupplyOrder'),
+    require('./apis/Customers/SupplyOrder/editSupplyOrder'),
+    require('./apis/Customers/SupplyOrder/viewAllSupplyOrder'),
+    require('./apis/Customers/SupplyOrder/viewSupplyOrder'),
+    // Order Product 
+    require('./apis/Customers/OrderProducts/addOrderProduct'),
+    require('./apis/Customers/OrderProducts/deleteOrderProduct'),
+    require('./apis/Customers/OrderProducts/updateOrderproduct'),
+    require('./apis/Customers/OrderProducts/viewAllorderProduct'),
+    require('./apis/Customers/OrderProducts/viewOrderedProduct'),
+
+
+
+
 
 
 
@@ -70,7 +86,7 @@ app.use('/staff',
 
 
 )
-   
+
 app.listen(PORT, () => {
     console.log(`Server is started in PORT no ${PORT}`)
 });

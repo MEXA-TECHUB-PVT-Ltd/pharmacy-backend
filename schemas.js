@@ -44,6 +44,41 @@ const customerSchema = mongoose.Schema({
     ntnNumber:String,
     applicabletax:String
 })
+const supplyOrderSchema = mongoose.Schema({
+    SPCategory:  {
+        type: String,
+        enum: ['Advanced Supply Order', 'Confirmed Supply Order']
+    },
+    customerId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'customer'
+    },
+    refNumber:String,
+    typeOforder: {
+        type: String,
+        enum: ['Market', 'Institutional','Others']
+    },
+    dateOfOrder:String,
+    orderValidTill:String,
+    specialInstructions:String,
+    orderedProductId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'orderProduct'
+    }]
+})
+const orderProductSchema = mongoose.Schema({
+    supplyOrderId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'supplyOrder'
+    },
+    productName:String,
+    companyName:String,
+    packing:String,
+    ratePerUnit:String,
+    quantity:String,
+    amount:String,
+    totalAmount:String
+})
 const staffMemberSchema = mongoose.Schema({
     
     employeeName: String,
@@ -63,15 +98,16 @@ const productModel = mongoose.model('product', productSchema, 'product')
 const customerModel = mongoose.model('customer', customerSchema, 'customer')
 const staffMemberModel = mongoose.model('staffMember', staffMemberSchema, 'staffMember')
 const MRPModel = mongoose.model('MRP', MRPSchema, 'MRP')
-
-
-
+const supplyOrderModel = mongoose.model('supplyOrder', supplyOrderSchema, 'supplyOrder')
+const orderProductModel = mongoose.model('orderProduct', orderProductSchema, 'orderProduct')
 
 module.exports = {
     productModel,
     customerModel,
     staffMemberModel,
-    MRPModel
+    MRPModel,
+    supplyOrderModel,
+    orderProductModel
    
 
 
