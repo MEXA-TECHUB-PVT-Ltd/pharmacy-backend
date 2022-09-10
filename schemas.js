@@ -71,6 +71,10 @@ const orderProductSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'supplyOrder'
     },
+    productId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'product'
+    },
     productName:String,
     companyName:String,
     packing:String,
