@@ -9,6 +9,6 @@ const GetCustomer = app.get('/getCustomer', (req, res) => {
         } else {
             res.send(result)
         }
-    })
+    }).populate("CalculateTaxId")
 })
 module.exports = GetCustomer

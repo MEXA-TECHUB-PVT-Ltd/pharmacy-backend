@@ -3,7 +3,6 @@ const app = express()
 const { productModel } = require('../../../schemas')
 
 const CreateProduct = app.post('/addProduct', (req, res) => {
-     const maxRetailPrice= req.body.maxRetailPrice;
     const product = new productModel({
         itemName: req.body.itemName,
         itemCode: req.body.itemCode,

@@ -42,7 +42,23 @@ const customerSchema = mongoose.Schema({
     licenseNumber:String,
     salesTaxNumber:String,
     ntnNumber:String,
-    applicabletax:String
+    applicabletax:String,
+    CalculateTaxId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CalculateTax'
+    }]
+})
+const CalculateTaxSchema = mongoose.Schema({
+    customerId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'customer'
+    },
+    salesTax:String,
+    generalSalesTax:String,
+    advanceTax:String,
+    furtherTax:String,
+    totalTax:String
+
 })
 const supplyOrderSchema = mongoose.Schema({
     SPCategory:  {
@@ -135,6 +151,8 @@ const MRPModel = mongoose.model('MRP', MRPSchema, 'MRP')
 const supplyOrderModel = mongoose.model('supplyOrder', supplyOrderSchema, 'supplyOrder')
 const orderProductModel = mongoose.model('orderProduct', orderProductSchema, 'orderProduct')
 const salesOrderModel = mongoose.model('salesOrder', salesOrderSchema, 'salesOrder')
+const CalculateTaxModel = mongoose.model('CalculateTax', CalculateTaxSchema, 'CalculateTax')
+
 
 module.exports = {
     productModel,
@@ -143,8 +161,7 @@ module.exports = {
     MRPModel,
     supplyOrderModel,
     orderProductModel,
-    salesOrderModel
-   
-
+    salesOrderModel,
+    CalculateTaxModel
 
 }

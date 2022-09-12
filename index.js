@@ -43,6 +43,16 @@ app.use('/customer',
     require('./apis/Customers/crud/editCustomer'),
     require('./apis/Customers/crud/viewAllCustomers'),
     require('./apis/Customers/crud/viewCustomer'),
+    // Tax Calculate 
+    require('./apis/Customers/CalculateTax/addTaxCustomer'),
+    require('./apis/Customers/CalculateTax/getAll'),
+    require('./apis/Customers/CalculateTax/getTax'),
+    require('./apis/Customers/CalculateTax/updateTaxCustomer'),
+
+
+
+
+
     // Supply Order 
     require('./apis/Customers/SupplyOrder/addSupplyOrder'),
     require('./apis/Customers/SupplyOrder/deleteSupplyOrder'),

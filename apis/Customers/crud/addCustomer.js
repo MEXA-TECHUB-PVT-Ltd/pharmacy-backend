@@ -3,7 +3,6 @@ const app = express()
 const { customerModel } = require('../../../schemas')
 
 const CreateCustomer = app.post('/addCustomer', (req, res) => {
-    
     const customer = new customerModel({
         typeOfCustomer: req.body.typeOfCustomer,
         name: req.body.name,
@@ -15,7 +14,8 @@ const CreateCustomer = app.post('/addCustomer', (req, res) => {
         licenseNumber: req.body.licenseNumber,
         salesTaxNumber: req.body.salesTaxNumber,
         ntnNumber: req.body.ntnNumber,
-        applicabletax: req.body.applicabletax,
+        applicabletax:"",
+        CalculateTaxId:[]
     })
     customer.save((error, result) => {
         if (error) {

@@ -6,7 +6,7 @@ const CreateSupplyOrder = app.post('/addSupplyOrder', (req, res) => {
     let refNumber = Math.floor((Math.random() * 100000) + 1);
 
     const SupplyOrder = new supplyOrderModel({
-        SPCategory:req.body.SPCategory,
+        SPCategory:"Advanced Supply Order",
         customerId:req.body.customerId,
         refNumber:refNumber,
         typeOforder:req.body.typeOforder,

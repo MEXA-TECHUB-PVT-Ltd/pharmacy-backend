@@ -37,6 +37,7 @@ const OrderProduct = app.post('/createSalesOrder', (req, res) => {
                                     $push: {
                                         salesOrderId: result._id,
                                     },
+                                    SPCategory:"Confirmed Supply Order"
                                 }
                                 const options = {
                                     new: true
