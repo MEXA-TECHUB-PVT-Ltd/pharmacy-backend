@@ -55,6 +55,19 @@ app.use('/customer',
     require('./apis/Customers/OrderProducts/updateOrderproduct'),
     require('./apis/Customers/OrderProducts/viewAllorderProduct'),
     require('./apis/Customers/OrderProducts/viewOrderedProduct'),
+    require('./apis/Customers/OrderProducts/supplyOrderData'),
+    // SalesOrder 
+    require('./apis/Customers/SalesOrder/addSalesOrder'),
+    require('./apis/Customers/SalesOrder/deleteSalesOrder'),
+    require('./apis/Customers/SalesOrder/updateSalesOrder'),
+    require('./apis/Customers/SalesOrder/viewAllSalesOrder'),
+    require('./apis/Customers/SalesOrder/viewAllSupplySales'),
+    require('./apis/Customers/SalesOrder/viewSalesOrder'),
+
+
+
+
+
 
 
 

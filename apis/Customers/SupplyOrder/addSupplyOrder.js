@@ -13,7 +13,8 @@ const CreateSupplyOrder = app.post('/addSupplyOrder', (req, res) => {
         dateOfOrder:req.body.dateOfOrder,
         orderValidTill:req.body.orderValidTill,
         specialInstructions:req.body.specialInstructions,
-        orderedProductId:[]
+        orderedProductId:[],
+        Status:'Pending'
     })
     SupplyOrder.save((error, result) => {
         if (error) {

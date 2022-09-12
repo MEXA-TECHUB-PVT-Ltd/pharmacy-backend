@@ -64,7 +64,37 @@ const supplyOrderSchema = mongoose.Schema({
     orderedProductId:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'orderProduct'
+    }],
+    Status: {
+        type: String,
+        enum: ['Pending', 'Partial','Completed']
+    },
+    salesOrderId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'salesOrder'
     }]
+})
+const salesOrderSchema = mongoose.Schema({
+    supplyOrderId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'supplyOrder'
+    },
+    saleOrderState: {
+        type: String,
+        enum: ['Active', 'Pending','Close']
+    },
+    orderDeliveryStatus: {
+        type: String,
+        enum: ['Processing', 'Dispatched','Delivered']
+    },
+    SO_refNumber:String,
+    customerId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'customer'
+    },
+    CustomerName:String,
+    ContactPerson:String,
+    PhoneNumber:String
 })
 const orderProductSchema = mongoose.Schema({
     supplyOrderId:{
@@ -104,6 +134,7 @@ const staffMemberModel = mongoose.model('staffMember', staffMemberSchema, 'staff
 const MRPModel = mongoose.model('MRP', MRPSchema, 'MRP')
 const supplyOrderModel = mongoose.model('supplyOrder', supplyOrderSchema, 'supplyOrder')
 const orderProductModel = mongoose.model('orderProduct', orderProductSchema, 'orderProduct')
+const salesOrderModel = mongoose.model('salesOrder', salesOrderSchema, 'salesOrder')
 
 module.exports = {
     productModel,
@@ -111,7 +142,8 @@ module.exports = {
     staffMemberModel,
     MRPModel,
     supplyOrderModel,
-    orderProductModel
+    orderProductModel,
+    salesOrderModel
    
 
 

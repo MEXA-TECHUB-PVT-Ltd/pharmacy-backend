@@ -9,6 +9,6 @@ const GetAllSupplyOrder = app.get('/getAllSupplyOrder', (req, res) => {
         } else {
             res.send(result)
         }
-    }).populate("orderedProductId")
+    }).populate("orderedProductId").populate("salesOrderId")
 })
 module.exports = GetAllSupplyOrder
