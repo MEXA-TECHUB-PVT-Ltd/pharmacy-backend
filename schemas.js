@@ -8,10 +8,89 @@ const productSchema = mongoose.Schema({
     companyName:String,
     expiryDate:String,
     batchNo:String,
-    maxRetailPrice:[{
+    maxRetailPrice:String,
+    tradePrice:String
+})
+const InvoiceSchema = mongoose.Schema({
+    // customerId:{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'customer'
+    // },staffMember
+    typeOfInvoice: {
+        type: String,
+        enum: ['Tax Invoice', 'Cash Invoice']
+    },
+    supplyOrderId:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'MRP'
+        ref: 'supplyOrder'
+    },
+    invoiceNo:String,
+    // supplyOrderNo:String,
+    supplyOrderDate:String,
+    invoiceDate:String,
+    dueDate:String,
+    deliveryChallanNo:String,
+    staffMemberId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'staffMember'
+    },
+    bookedBy:String,
+    deliveredBy:String,
+    pickSummaryNo:String,
+    customerId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'customer'
     }],
+    customerName:String,
+    customerAddress:String,
+    CustomerNTN:String,
+    CustomerCNIC:String,
+    CustomerSalesTaxRegNo:String,
+    products:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'orderProduct'
+    }],
+    // productId:String,
+    // productName:String,
+    // packSize:String,
+    // batchNo:String,
+    // expiryDate:String,
+    // quantity:String,
+    // tradePrice:String,
+    amountRs:String,
+    discountOnMRP:String,
+    discountOnTP:String,
+    discountedAmount:String,
+    salesTax:String,
+    generalSalesTax:String,
+    advanceTax:String,
+    furtherTax:String,
+    AmountIncTax:String,
+    invoiceValue:String,
+    invoiceDiscount:String,
+    invoiceSalesTax:String,
+    invoiceGeneralSalesTax:String,
+    invoiceAdvanceTax:String,
+    invoiceFurtherTax:String,
+    totalPayable:String,
+    notes:String,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })
 const MRPSchema = mongoose.Schema({
     productId:{
@@ -124,6 +203,8 @@ const orderProductSchema = mongoose.Schema({
     productName:String,
     companyName:String,
     packing:String,
+    expiryDate:String,
+    batchNo:String,
     ratePerUnit:String,
     quantity:String,
     amount:String,
@@ -152,10 +233,12 @@ const supplyOrderModel = mongoose.model('supplyOrder', supplyOrderSchema, 'suppl
 const orderProductModel = mongoose.model('orderProduct', orderProductSchema, 'orderProduct')
 const salesOrderModel = mongoose.model('salesOrder', salesOrderSchema, 'salesOrder')
 const CalculateTaxModel = mongoose.model('CalculateTax', CalculateTaxSchema, 'CalculateTax')
+const InvoiceModel = mongoose.model('Invoice', InvoiceSchema, 'Invoice')
 
 
 module.exports = {
     productModel,
+    InvoiceModel,
     customerModel,
     staffMemberModel,
     MRPModel,

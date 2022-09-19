@@ -25,13 +25,6 @@ app.use('/inventory',
     require('./apis/Inventory/Products/viewProduct'),
     require('./apis/Inventory/Products/getAllProducts'),
     require('./apis/Inventory/Products/updateProduct'),
-    // MRP 
-    require('./apis/Inventory/MRP/addMRP'),
-    require('./apis/Inventory/MRP/deleteMRP'),
-    require('./apis/Inventory/MRP/editMRP'),
-    require('./apis/Inventory/MRP/getAllMRP'),
-    require('./apis/Inventory/MRP/getMRP'),
-    require('./apis/Inventory/MRP/getProductMRP'),
 
 )
 ////////////////////////////////////////////////////////////////////////////////
@@ -104,6 +97,19 @@ app.use('/staff',
 
 
 
+
+
+
+
+)
+////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////Invoice APIS////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+app.use('/invoice',
+    require('./apis/Customers/Invoices/addInvoice'),
+    require('./apis/Customers/Invoices/getInvoice'),
+    require('./apis/Customers/Invoices/getAllInvoice'),
+    require('./apis/Customers/Invoices/deleteInvoice'),
 
 
 
