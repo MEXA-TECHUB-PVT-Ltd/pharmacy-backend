@@ -16,7 +16,6 @@ const OrderProduct = app.post('/createSalesOrder', (req, res) => {
                 if (error) {
                     res.send(error)
                 } else {
-                    // res.send(result)
                     if (result === undefined || result.length == 0) {
                         console.log("empty")
                         customerModel.findById(CustomerID, (error, result) => {
@@ -89,8 +88,6 @@ const OrderProduct = app.post('/createSalesOrder', (req, res) => {
                                             })
                                         }
                                     })
-
-
                                 } else {
                                     const newSalesOrder = new salesOrderModel({
                                         supplyOrderId: req.body.supplyOrderId,
@@ -102,8 +99,6 @@ const OrderProduct = app.post('/createSalesOrder', (req, res) => {
                                         ContactPerson: ContactPerson,
                                         PhoneNumber: PhoneNumber,
                                         saleOrderProducts: salesOrderedproducts
-
-
                                     })
                                     newSalesOrder.save((error, result) => {
                                         if (error) {
@@ -125,23 +120,15 @@ const OrderProduct = app.post('/createSalesOrder', (req, res) => {
                                         }
                                     })
                                 }
-
-
-
                             }
                         })
 
                     } else {
                         console.log("Not empty")
                         res.send('sale Order Already created for this supply order')
-
                     }
                 }
             })
-
-
-
-
         }
     })
 

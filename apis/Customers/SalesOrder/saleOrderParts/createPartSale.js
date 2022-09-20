@@ -4,7 +4,7 @@ const { saleOrderPartsModel, salesOrderModel, productModel } = require('../../..
 
 const CreateSaleOrderPart = app.post('/addSaleOrderPart', (req, res) => {
     const saleOrderId = req.body.saleOrderId
-    const productIdSales= req.body.productId
+    // const productIdSales= req.body.productId
     salesOrderModel.findById(saleOrderId, (error, result) => {
         if (error) {
             res.send(error)
@@ -14,32 +14,43 @@ const CreateSaleOrderPart = app.post('/addSaleOrderPart', (req, res) => {
             const CustomerName = result.CustomerName;
             const ContactPerson = result.ContactPerson;
             const PhoneNumber = result.PhoneNumber;
-            productModel.findById(productIdSales, (error, result) => {
-                if (error) {
-                    res.send(error)
-                } else {
-            const productName=result.productName;
-            const batchNo=result.batchNo;
-            const companyName=result.companyName;
+            // productModel.findById(productIdSales, (error, result) => {
+            //     if (error) {
+            //         res.send(error)
+            //     } else {
+            // const productName=result.productName;
+            // const batchNo=result.batchNo;
+            // const companyName=result.companyName;
                     const SaleOrderPart = new saleOrderPartsModel({
                         saleOrderId: req.body.saleOrderId,
                         SO_refNumber: SO_ref,
                         productId:req.body.productId,
-                        productName: productName,
-                        batchNo: batchNo,
-                        companyName: companyName,
+                        // productName: productName,
+                        // batchNo: batchNo,
+                        // companyName: companyName,
                         quantity: req.body.quantity,
                         packSize: req.body.packSize,
                         customerId: customerId,
                         CustomerName: CustomerName,
                         ContactPerson: ContactPerson,
                         PhoneNumber: PhoneNumber
-                    })
+                    },
+                    )
                     SaleOrderPart.save((error, result) => {
                         if (error) {
                             res.send(error)
                         } else {
                             res.send(result)
+                            // const updateData1 = {
+                            //     $push: {
+                            //         productId: { $in: req.body.productId},
+                            //     },
+                            // }
+                            // const options1 = {
+                            //     new: true
+                            // }
+                            //     saleOrderPartsModel.findByIdAndUpdate(result.saleOrderId, updateData1, options1, (error, result) => {
+                            //     })
                             // Update Data 
                             const updateData = {
                                 $push: {
@@ -53,8 +64,8 @@ const CreateSaleOrderPart = app.post('/addSaleOrderPart', (req, res) => {
                             })
                         }
                     })
-                }
-            })
+            //     }
+            // })
         }
     }).populate("saleOrderProducts")
 

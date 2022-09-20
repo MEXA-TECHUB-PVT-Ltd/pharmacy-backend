@@ -191,10 +191,10 @@ saleOrderId:{
         ref: 'salesOrder'
 },
 SO_refNumber:String,
-productId:{
+productId:[{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'product'
-},
+}],
 productName:String,
 companyName:String,
 batchNo:String,
