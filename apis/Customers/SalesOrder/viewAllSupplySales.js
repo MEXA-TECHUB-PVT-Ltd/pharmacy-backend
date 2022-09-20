@@ -9,6 +9,6 @@ const GetUserProfile = app.get('/getAllSupplySales', (req, res) => {
         } else {
             res.send(result)
         }
-    }).populate("supplyOrderId")
+    }).populate("supplyOrderId").populate("saleOrderProducts").populate("salePartsId")
 })
 module.exports = GetUserProfile

@@ -66,6 +66,14 @@ app.use('/customer',
     require('./apis/Customers/SalesOrder/viewAllSalesOrder'),
     require('./apis/Customers/SalesOrder/viewAllSupplySales'),
     require('./apis/Customers/SalesOrder/viewSalesOrder'),
+//sale orderParts
+require('./apis/Customers/SalesOrder/saleOrderParts/createPartSale'),
+require('./apis/Customers/SalesOrder/saleOrderParts/deletePartSale'),
+require('./apis/Customers/SalesOrder/saleOrderParts/getAllPartSalesOrder'),
+require('./apis/Customers/SalesOrder/saleOrderParts/updatePartSale'),
+require('./apis/Customers/SalesOrder/saleOrderParts/getSupplyOrderSale'),
+
+
 
 
 

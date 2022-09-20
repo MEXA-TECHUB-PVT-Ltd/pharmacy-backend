@@ -92,21 +92,7 @@ const InvoiceSchema = mongoose.Schema({
 
 
 })
-const MRPSchema = mongoose.Schema({
-    productId:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'product'
-    },
-    customerId:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'customer'
-    },
-    customerName:String,
-    customerType:String,
-    MRPprice:String,
-    tradePrice:String
 
-})
 const customerSchema = mongoose.Schema({
     typeOfCustomer:  {
         type: String,
@@ -189,7 +175,39 @@ const salesOrderSchema = mongoose.Schema({
     },
     CustomerName:String,
     ContactPerson:String,
-    PhoneNumber:String
+    PhoneNumber:String,
+    saleOrderProducts:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'orderProduct'
+    }],
+    salePartsId:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'saleOrderParts'
+    }]
+})
+const saleOrderPartsSchema = mongoose.Schema({
+saleOrderId:{
+    type: mongoose.Schema.Types.ObjectId,
+        ref: 'salesOrder'
+},
+SO_refNumber:String,
+productId:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'product'
+},
+productName:String,
+companyName:String,
+batchNo:String,
+quantity:String,
+packSize:String,
+customerId:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'customer'
+},
+CustomerName:String,
+ContactPerson:String,
+PhoneNumber:String,
+
 })
 const orderProductSchema = mongoose.Schema({
     supplyOrderId:{
@@ -228,10 +246,11 @@ const staffMemberSchema = mongoose.Schema({
 const productModel = mongoose.model('product', productSchema, 'product')
 const customerModel = mongoose.model('customer', customerSchema, 'customer')
 const staffMemberModel = mongoose.model('staffMember', staffMemberSchema, 'staffMember')
-const MRPModel = mongoose.model('MRP', MRPSchema, 'MRP')
 const supplyOrderModel = mongoose.model('supplyOrder', supplyOrderSchema, 'supplyOrder')
 const orderProductModel = mongoose.model('orderProduct', orderProductSchema, 'orderProduct')
 const salesOrderModel = mongoose.model('salesOrder', salesOrderSchema, 'salesOrder')
+const saleOrderPartsModel = mongoose.model('saleOrderParts', saleOrderPartsSchema, 'saleOrderParts')
+
 const CalculateTaxModel = mongoose.model('CalculateTax', CalculateTaxSchema, 'CalculateTax')
 const InvoiceModel = mongoose.model('Invoice', InvoiceSchema, 'Invoice')
 
@@ -241,10 +260,10 @@ module.exports = {
     InvoiceModel,
     customerModel,
     staffMemberModel,
-    MRPModel,
     supplyOrderModel,
     orderProductModel,
     salesOrderModel,
-    CalculateTaxModel
+    CalculateTaxModel,
+    saleOrderPartsModel
 
 }
