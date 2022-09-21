@@ -23,7 +23,10 @@ const OrderProduct = app.post('/createOrderProduct', (req, res) => {
                                 const companyName = result.companyName;
                                 const expiryDate = result.expiryDate;
                                 const batchNo = result.batchNo;
-
+                                const quantity=req.body.quantity;
+                                const amount=req.body.amount;
+                                const Total=quantity*amount;
+                                console.log(Total)
 
 
                                 const newOrderProduct = new orderProductModel({
@@ -34,10 +37,10 @@ const OrderProduct = app.post('/createOrderProduct', (req, res) => {
                                     packing: req.body.packing,
                                     ratePerUnit: req.body.ratePerUnit,
                                     quantity: req.body.quantity,
-                                expiryDate:expiryDate,
-                                batchNo:batchNo,
+                                    expiryDate: expiryDate,
+                                    batchNo: batchNo,
                                     amount: req.body.amount,
-                                    totalAmount: req.body.totalAmount
+                                    totalAmount: Total
 
                                 })
                                 newOrderProduct.save((error, result) => {
@@ -45,7 +48,7 @@ const OrderProduct = app.post('/createOrderProduct', (req, res) => {
                                         res.send(error)
                                     } else {
                                         res.send(result)
-                                // Update Data 
+                                        // Update Data 
                                         const updateData = {
                                             $push: {
                                                 orderedProductId: result._id,
