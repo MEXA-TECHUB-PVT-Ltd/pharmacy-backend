@@ -30,12 +30,16 @@ const InvoiceSchema = mongoose.Schema({
     invoiceDate:String,
     dueDate:String,
     deliveryChallanNo:String,
-    staffMemberId:{
+    bookedBy:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'staffMember'
     },
-    bookedBy:String,
-    deliveredBy:String,
+    bookedByName:String,
+    deliveredBy:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'staffMember'
+    },
+    deliveredByName:String,
     pickSummaryNo:String,
     customerId:[{
         type: mongoose.Schema.Types.ObjectId,
@@ -50,6 +54,10 @@ const InvoiceSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'orderProduct'
     }],
+    // productDetail:[{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'product'
+    // }],
     // productId:String,
     // productName:String,
     // packSize:String,
@@ -191,13 +199,13 @@ saleOrderId:{
         ref: 'salesOrder'
 },
 SO_refNumber:String,
-productId:[{
+productId:{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'product'
-}],
+},
 productName:String,
 companyName:String,
-batchNo:String,
+batchNo:String,                       
 quantity:String,
 packSize:String,
 customerId:{

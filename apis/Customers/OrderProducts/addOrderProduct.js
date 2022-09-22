@@ -24,7 +24,7 @@ const OrderProduct = app.post('/createOrderProduct', (req, res) => {
                                 const expiryDate = result.expiryDate;
                                 const batchNo = result.batchNo;
                                 const quantity=req.body.quantity;
-                                const amount=req.body.amount;
+                                const amount=result.maxRetailPrice;
                                 const Total=quantity*amount;
                                 console.log(Total)
 
@@ -39,7 +39,7 @@ const OrderProduct = app.post('/createOrderProduct', (req, res) => {
                                     quantity: req.body.quantity,
                                     expiryDate: expiryDate,
                                     batchNo: batchNo,
-                                    amount: req.body.amount,
+                                    amount:amount,
                                     totalAmount: Total
 
                                 })

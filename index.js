@@ -99,6 +99,10 @@ app.use('/staff',
     require('./apis/StaffMembers/removeStaffMember'),
     require('./apis/StaffMembers/updateStaffMember'),
     require('./apis/StaffMembers/viewStaffMember'),
+    require('./apis/StaffMembers/getAllDeliveryMan'),
+    require('./apis/StaffMembers/getAllSalesMan'),
+
+
 
 
 
