@@ -27,8 +27,6 @@ const OrderProduct = app.post('/createOrderProduct', (req, res) => {
                                 const amount=result.maxRetailPrice;
                                 const Total=quantity*amount;
                                 console.log(Total)
-
-
                                 const newOrderProduct = new orderProductModel({
                                     supplyOrderId: req.body.supplyOrderId,
                                     productId: ProductId,

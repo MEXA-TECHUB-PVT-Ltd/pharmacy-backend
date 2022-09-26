@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const { InvoiceModel, supplyOrderModel, staffMemberModel, customerModel } = require('../../../schemas')
+const { InvoiceModel, supplyOrderModel, staffMemberModel, customerModel, saleOrderPartsModel } = require('../../../schemas')
 
 const CreateInvoice = app.post('/addInvoice', (req, res) => {
     let InvoiceNoData = Math.floor((Math.random() * 100000) + 1);
@@ -13,12 +13,21 @@ const CreateInvoice = app.post('/addInvoice', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            // res.send(result)
             const InvoiceNo = InvoiceNoData
             const customerId = result.customerId._id
-            const Products = result.orderedProductId
+            // const Products = result.orderedProductId
             const supplyOrderDate = result.dateOfOrder
-
+            // res.send(result.salesOrderId)
+            // saleOrderPartsModel.find({saleOrderId: result.salesOrderId }, (error, result) => {
+            //     if (error) {
+            //         res.send(error)
+            //     } else {
+            //         // res.send(result)
+            //         const Products= result
+            //         // Products.sum('totalPayable')
+                    
+            
             staffMemberModel.findById(bookedBy, (error, result) => {
                 if (error) {
                     res.send(error)
@@ -43,6 +52,7 @@ const CreateInvoice = app.post('/addInvoice', (req, res) => {
                                     const customerCNIC = result.cnicOfPropreitor
                                     const customerSalestax = result.salesTaxNumber
                                     const CalculateTax = result.CalculateTaxId
+                                    const TotalTax = result.applicabletax
 
                                     if (CalculateTax === undefined || CalculateTax.length === 0) {
                                         console.log("empty")
@@ -53,59 +63,58 @@ const CreateInvoice = app.post('/addInvoice', (req, res) => {
                                         const customerGeneralSalesTaxP = result.CalculateTaxId[0].generalSalesTax
                                         const customerAdvanceTax = result.CalculateTaxId[0].advanceTax
                                         const customerFurtherTax = result.CalculateTaxId[0].furtherTax
-                                        const AmountIncTax = result.CalculateTaxId[0].totalTax
                                         // Calculate Discount
                                         const invoiceDiscount =req.body.invoiceDiscount
 
                                         // res.send(Products)
-                                    //     const Invoice = new InvoiceModel({
-                                    //         typeOfInvoice: req.body.typeOfInvoice,
-                                    //         supplyOrderId: req.body.supplyOrderId,
-                                    //         invoiceNo: InvoiceNo,
-                                    //         supplyOrderDate:supplyOrderDate,
-                                    //         invoiceDate: req.body.invoiceDate,
-                                    //         dueDate: req.body.dueDate,
-                                    //         deliveryChallanNo: req.body.deliveryChallanNo,
-                                    //         bookedBy: StaffName,
-                                    //         bookedByName: StaffName,
+                                        const Invoice = new InvoiceModel({
+                                            typeOfInvoice: req.body.typeOfInvoice,
+                                            supplyOrderId: req.body.supplyOrderId,
+                                            invoiceNo: InvoiceNo,
+                                            supplyOrderDate:supplyOrderDate,
+                                            invoiceDate: req.body.invoiceDate,
+                                            dueDate: req.body.dueDate,
+                                            deliveryChallanNo: req.body.deliveryChallanNo,
+                                            bookedBy: req.body.bookedBy,
+                                            bookedByName: bookedByName,
 
-                                    //         deliveredBy: req.body.deliveredBy,
-                                    //         deliveredByName: req.body.deliveredBy,
+                                            deliveredBy: req.body.deliveredBy,
+                                            deliveredByName:DeliveredByName,
 
-                                    //         pickSummaryNo: req.body.pickSummaryNo,
-                                    //         customerId: customerId,
-                                    //         customerName: customerName,
-                                    //         customerAddress: customerAddress,
-                                    //         CustomerNTN: customerNTN,
-                                    //         CustomerCNIC: customerCNIC,
-                                    //         CustomerSalesTaxRegNo: customerSalestax,
-                                    //         $push: {
-                                    //             products: Products,
-                                    //         },
-                                    //         // productDetail: req.body.productDetail,
-                                    //         salesTax: customerSalesTaxP,
-                                    //         generalSalesTax: customerGeneralSalesTaxP,
-                                    //         advanceTax: customerAdvanceTax,
-                                    //         furtherTax: customerFurtherTax,
+                                            pickSummaryNo: req.body.pickSummaryNo,
+                                            customerId: customerId,
+                                            customerName: customerName,
+                                            customerAddress: customerAddress,
+                                            CustomerNTN: customerNTN,
+                                            CustomerCNIC: customerCNIC,
+                                            CustomerSalesTaxRegNo: customerSalestax,
+                                            products: [],
+                                            // productDetail: req.body.productDetail,
+                                            salesTax: customerSalesTaxP,
+                                            generalSalesTax: customerGeneralSalesTaxP,
+                                            advanceTax: customerAdvanceTax,
+                                            furtherTax: customerFurtherTax,
+                                            TotalTax:TotalTax,
+                                            AmountIncTax: 0,
+                                            // invoiceValue: req.body.invoiceValue,
+                                            invoiceDiscount: invoiceDiscount,
+                                            invoiceSalesTax: customerSalesTaxP,
+                                            invoiceGeneralSalesTax:customerGeneralSalesTaxP,
+                                            invoiceAdvanceTax: customerAdvanceTax,
+                                            invoiceFurtherTax: customerFurtherTax,
+                                            discountedAmount:0,
 
-                                    //         AmountIncTax: AmountIncTax,
-                                    //         invoiceValue: req.body.invoiceValue,
-                                    //         invoiceDiscount: req.body.invoiceDiscount,
-                                    //         invoiceSalesTax: customerSalesTaxP,
-                                    //         invoiceGeneralSalesTax:customerGeneralSalesTaxP,
-                                    //         invoiceAdvanceTax: customerAdvanceTax,
-                                    //         invoiceFurtherTax: customerFurtherTax,
-                                    //         totalPayable: req.body.totalPayable,
-                                    //         notes: req.body.notes,
+                                            totalPayable: 0,
+                                            notes: req.body.notes,
 
-                                    //     })
-                                    //     Invoice.save((error, result) => {
-                                    //         if (error) {
-                                    //             res.send(error)
-                                    //         } else {
-                                    //             res.send(result)
-                                    //         }
-                                    //     })
+                                        })
+                                        Invoice.save((error, result) => {
+                                            if (error) {
+                                                res.send(error)
+                                            } else {
+                                                res.send(result)
+                                            }
+                                        })
 
                                     }
 
@@ -116,10 +125,11 @@ const CreateInvoice = app.post('/addInvoice', (req, res) => {
 
                 }
             })
-
+    //     }
+    // })
         }
-    }).populate("salesOrderId").populate("orderedProductId").populate("customerId")
-
+    }).populate("orderedProductId").populate("customerId")
+  
 
 })
 module.exports = CreateInvoice

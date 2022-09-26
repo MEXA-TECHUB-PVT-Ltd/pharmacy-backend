@@ -9,6 +9,6 @@ const GetSale = app.get('/GetOneSale', (req, res) => {
         } else {
             res.send(result)
         }
-    })
+    }).populate("productId")
 })
 module.exports = GetSale

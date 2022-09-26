@@ -27,6 +27,10 @@ const CreateTaxCustomer = app.post('/addTaxCustomer', (req, res) => {
                             $push: {
                                 CalculateTaxId: result._id,
                             },
+                            salesTax: req.body.salesTax,
+                            generalSalesTax: req.body.generalSalesTax,
+                            advanceTax: req.body.advanceTax,
+                            furtherTax: req.body.furtherTax,
                             applicabletax: totalTax
                         }
                         const options = {

@@ -41,10 +41,10 @@ const InvoiceSchema = mongoose.Schema({
     },
     deliveredByName:String,
     pickSummaryNo:String,
-    customerId:[{
+    customerId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'customer'
-    }],
+    },
     customerName:String,
     customerAddress:String,
     CustomerNTN:String,
@@ -52,7 +52,7 @@ const InvoiceSchema = mongoose.Schema({
     CustomerSalesTaxRegNo:String,
     products:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'orderProduct'
+        ref: 'InvoiceProduct'
     }],
     // productDetail:[{
     //     type: mongoose.Schema.Types.ObjectId,
@@ -66,15 +66,16 @@ const InvoiceSchema = mongoose.Schema({
     // quantity:String,
     // tradePrice:String,
     amountRs:String,
-    discountOnMRP:String,
-    discountOnTP:String,
+    // discountOnMRP:String,
+    // discountOnTP:String,
     discountedAmount:String,
     salesTax:String,
     generalSalesTax:String,
     advanceTax:String,
     furtherTax:String,
+    TotalTax:String,
     AmountIncTax:String,
-    invoiceValue:String,
+    // invoiceValue:String,
     invoiceDiscount:String,
     invoiceSalesTax:String,
     invoiceGeneralSalesTax:String,
@@ -100,6 +101,25 @@ const InvoiceSchema = mongoose.Schema({
 
 
 })
+const InvoiceProductSchema = mongoose.Schema({
+    InvoiceId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Invoice'
+    },
+    productId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'product'
+    },
+    productName:String,
+    companyName:String,
+    packing:String,
+    expiryDate:String,
+    batchNo:String,
+    ratePerUnit:String,
+    quantity:String,
+    amount:String,
+    totalAmount:String
+})
 
 const customerSchema = mongoose.Schema({
     typeOfCustomer:  {
@@ -116,6 +136,10 @@ const customerSchema = mongoose.Schema({
     salesTaxNumber:String,
     ntnNumber:String,
     applicabletax:String,
+    salesTax:String,
+    generalSalesTax:String,
+    advanceTax:String,
+    furtherTax:String,
     CalculateTaxId:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'CalculateTax'
@@ -201,11 +225,12 @@ saleOrderId:{
 SO_refNumber:String,
 productId:{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'product'
+    ref: 'orderProduct'
 },
 productName:String,
 companyName:String,
-batchNo:String,                       
+batchNo:String,     
+amount:String,                  
 quantity:String,
 packSize:String,
 customerId:{
@@ -215,6 +240,7 @@ customerId:{
 CustomerName:String,
 ContactPerson:String,
 PhoneNumber:String,
+totalAmountPayable:String
 
 })
 const orderProductSchema = mongoose.Schema({
@@ -261,6 +287,8 @@ const saleOrderPartsModel = mongoose.model('saleOrderParts', saleOrderPartsSchem
 
 const CalculateTaxModel = mongoose.model('CalculateTax', CalculateTaxSchema, 'CalculateTax')
 const InvoiceModel = mongoose.model('Invoice', InvoiceSchema, 'Invoice')
+const InvoiceProductModel = mongoose.model('InvoiceProduct', InvoiceProductSchema, 'InvoiceProduct')
+
 
 
 module.exports = {
@@ -272,6 +300,7 @@ module.exports = {
     orderProductModel,
     salesOrderModel,
     CalculateTaxModel,
-    saleOrderPartsModel
+    saleOrderPartsModel,
+    InvoiceProductModel
 
 }

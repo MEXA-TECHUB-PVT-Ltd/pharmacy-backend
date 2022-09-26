@@ -21,8 +21,13 @@ const UpdateTaxCustomer = app.put('/updateTaxCustomer', (req, res) => {
             res.send(result)
             const CustomerId= result.customerId
             const updateData = {
-                applicabletax: totalTax
+                applicabletax: totalTax,
+                salesTax: req.body.salesTax,
+                generalSalesTax: req.body.generalSalesTax,
+                advanceTax: req.body.advanceTax,
+                furtherTax: req.body.furtherTax,
             }
+            
             const options = {
                 new: true
             }

@@ -123,6 +123,10 @@ app.use('/invoice',
     require('./apis/Customers/Invoices/getAllInvoice'),
     require('./apis/Customers/Invoices/deleteInvoice'),
 
+    require('./apis/Customers/Invoices/InvoiceSales/addProduct'),
+    require('./apis/Customers/Invoices/InvoiceSales/getAllInvoiceProducts'),
+
+
 
 
 

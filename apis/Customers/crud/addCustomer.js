@@ -14,8 +14,13 @@ const CreateCustomer = app.post('/addCustomer', (req, res) => {
         licenseNumber: req.body.licenseNumber,
         salesTaxNumber: req.body.salesTaxNumber,
         ntnNumber: req.body.ntnNumber,
-        applicabletax:"",
-        CalculateTaxId:[]
+        applicabletax: "",
+        CalculateTaxId: [],
+        salesTax: 0,
+        generalSalesTax: 0,
+        advanceTax: 0,
+        furtherTax: 0,
+
     })
     customer.save((error, result) => {
         if (error) {

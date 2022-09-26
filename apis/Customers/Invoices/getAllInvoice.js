@@ -9,6 +9,6 @@ const GetAllInvoice = app.get('/getAllInvoice', (req, res) => {
         } else {
             res.send(result)
         }
-    }).populate("products")
+    }).populate("products").populate("customerId").populate("bookedBy").populate("deliveredBy")
 })
 module.exports = GetAllInvoice
