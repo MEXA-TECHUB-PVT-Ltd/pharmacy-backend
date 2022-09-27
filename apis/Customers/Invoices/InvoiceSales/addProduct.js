@@ -11,17 +11,19 @@ const OrderProduct = app.post('/createInvoiceProduct', (req, res) => {
             res.send(error)
         } else {
             // res.send(result)
+            const invoiceDiscount=result.invoiceDiscount
             const TotalPrevious=result.totalPayable
             const TotalTax=result.TotalTax
-            const sum=parseInt(TotalPrevious)+ parseInt(CurrentAmount)
-            const AmountIncTax=parseInt(TotalTax)+ parseInt(sum)
+            var sum=parseInt(TotalPrevious)+ parseInt(CurrentAmount);
+            var AmountIncTax=parseInt(TotalTax)+ parseInt(sum);
+            var TotalPayable=parseInt(AmountIncTax)-parseInt(invoiceDiscount)
             orderProductModel.findById(ProductId, (error, result) => {
                 if (error) {
                     res.send(error)
                 } else {
-                    res.send(result)
+                    // res.send(result)
                     const productIdSingle = result.productId;
-                    const productName = result.itemName;
+                    const productName = result.productName;
                     const companyName = result.companyName;
                     const expiryDate = result.expiryDate;
                     const batchNo = result.batchNo;
@@ -44,20 +46,26 @@ const OrderProduct = app.post('/createInvoiceProduct', (req, res) => {
                         if (error) {
                             res.send(error)
                         } else {
-                            res.send(result)
+                            // res.send(result)
                             // Update Data 
                             const updateData = {
                                    $push: {
-                                    products:result._id
+                                    products:result
                                    },
                                     amountRs: sum,
                                     AmountIncTax:AmountIncTax,
+                                    totalPayable:TotalPayable
                                 // },
                             }
                             const options = {
                                 new: true
                             }
                             InvoiceModel.findByIdAndUpdate(InvoiceId, updateData, options, (error, result) => {
+                                if (error) {
+                                    res.send(error)
+                                } else {
+                                    res.send(result)
+                                }
                             })
                         }
                     })

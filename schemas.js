@@ -27,6 +27,8 @@ const InvoiceSchema = mongoose.Schema({
     invoiceNo:String,
     // supplyOrderNo:String,
     supplyOrderDate:String,
+    SupplyOrderValid:String,
+    SuplyRefNo:String,
     invoiceDate:String,
     dueDate:String,
     deliveryChallanNo:String,
@@ -49,6 +51,7 @@ const InvoiceSchema = mongoose.Schema({
     customerAddress:String,
     CustomerNTN:String,
     CustomerCNIC:String,
+    CustomerPhone:String,
     CustomerSalesTaxRegNo:String,
     products:[{
         type: mongoose.Schema.Types.ObjectId,

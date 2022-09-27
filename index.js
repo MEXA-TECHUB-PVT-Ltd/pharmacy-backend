@@ -42,16 +42,17 @@ app.use('/customer',
     require('./apis/Customers/CalculateTax/getTax'),
     require('./apis/Customers/CalculateTax/updateTaxCustomer'),
 
-
-
-
-
     // Supply Order 
     require('./apis/Customers/SupplyOrder/addSupplyOrder'),
     require('./apis/Customers/SupplyOrder/deleteSupplyOrder'),
     require('./apis/Customers/SupplyOrder/editSupplyOrder'),
     require('./apis/Customers/SupplyOrder/viewAllSupplyOrder'),
     require('./apis/Customers/SupplyOrder/viewSupplyOrder'),
+    require('./apis/Customers/SupplyOrder/getCustomerSupplyOrder'),
+    require('./apis/Customers/SupplyOrder/getProductSupplyOrder'),
+
+
+
     // Order Product 
     require('./apis/Customers/OrderProducts/addOrderProduct'),
     require('./apis/Customers/OrderProducts/deleteOrderProduct'),
@@ -125,6 +126,9 @@ app.use('/invoice',
 
     require('./apis/Customers/Invoices/InvoiceSales/addProduct'),
     require('./apis/Customers/Invoices/InvoiceSales/getAllInvoiceProducts'),
+    require('./apis/Customers/Invoices/getInvoiceBySupplId'),
+    require('./apis/Customers/Invoices/sortInvoiceByDate'),
+
 
 
 

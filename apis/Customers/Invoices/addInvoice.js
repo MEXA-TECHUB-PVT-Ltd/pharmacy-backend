@@ -15,19 +15,11 @@ const CreateInvoice = app.post('/addInvoice', (req, res) => {
         } else {
             // res.send(result)
             const InvoiceNo = InvoiceNoData
+            const SuplyRefNo =result.refNumber
             const customerId = result.customerId._id
+            const SupplyOrderValid=result.orderValidTill
             // const Products = result.orderedProductId
             const supplyOrderDate = result.dateOfOrder
-            // res.send(result.salesOrderId)
-            // saleOrderPartsModel.find({saleOrderId: result.salesOrderId }, (error, result) => {
-            //     if (error) {
-            //         res.send(error)
-            //     } else {
-            //         // res.send(result)
-            //         const Products= result
-            //         // Products.sum('totalPayable')
-                    
-            
             staffMemberModel.findById(bookedBy, (error, result) => {
                 if (error) {
                     res.send(error)
@@ -53,6 +45,7 @@ const CreateInvoice = app.post('/addInvoice', (req, res) => {
                                     const customerSalestax = result.salesTaxNumber
                                     const CalculateTax = result.CalculateTaxId
                                     const TotalTax = result.applicabletax
+                                    const CustomerPhone = result.phone
 
                                     if (CalculateTax === undefined || CalculateTax.length === 0) {
                                         console.log("empty")
@@ -64,49 +57,46 @@ const CreateInvoice = app.post('/addInvoice', (req, res) => {
                                         const customerAdvanceTax = result.CalculateTaxId[0].advanceTax
                                         const customerFurtherTax = result.CalculateTaxId[0].furtherTax
                                         // Calculate Discount
-                                        const invoiceDiscount =req.body.invoiceDiscount
+                                        const invoiceDiscount = req.body.invoiceDiscount
 
                                         // res.send(Products)
                                         const Invoice = new InvoiceModel({
                                             typeOfInvoice: req.body.typeOfInvoice,
                                             supplyOrderId: req.body.supplyOrderId,
+                                            SuplyRefNo:SuplyRefNo,
+                                            SupplyOrderValid:SupplyOrderValid,
                                             invoiceNo: InvoiceNo,
-                                            supplyOrderDate:supplyOrderDate,
+                                            supplyOrderDate: supplyOrderDate,
                                             invoiceDate: req.body.invoiceDate,
                                             dueDate: req.body.dueDate,
                                             deliveryChallanNo: req.body.deliveryChallanNo,
                                             bookedBy: req.body.bookedBy,
                                             bookedByName: bookedByName,
-
                                             deliveredBy: req.body.deliveredBy,
-                                            deliveredByName:DeliveredByName,
-
+                                            deliveredByName: DeliveredByName,
                                             pickSummaryNo: req.body.pickSummaryNo,
                                             customerId: customerId,
                                             customerName: customerName,
                                             customerAddress: customerAddress,
                                             CustomerNTN: customerNTN,
+                                            CustomerPhone: CustomerPhone,
                                             CustomerCNIC: customerCNIC,
                                             CustomerSalesTaxRegNo: customerSalestax,
                                             products: [],
-                                            // productDetail: req.body.productDetail,
                                             salesTax: customerSalesTaxP,
                                             generalSalesTax: customerGeneralSalesTaxP,
                                             advanceTax: customerAdvanceTax,
                                             furtherTax: customerFurtherTax,
-                                            TotalTax:TotalTax,
+                                            TotalTax: TotalTax,
                                             AmountIncTax: 0,
-                                            // invoiceValue: req.body.invoiceValue,
                                             invoiceDiscount: invoiceDiscount,
                                             invoiceSalesTax: customerSalesTaxP,
-                                            invoiceGeneralSalesTax:customerGeneralSalesTaxP,
+                                            invoiceGeneralSalesTax: customerGeneralSalesTaxP,
                                             invoiceAdvanceTax: customerAdvanceTax,
                                             invoiceFurtherTax: customerFurtherTax,
-                                            discountedAmount:0,
-
+                                            discountedAmount: 0,
                                             totalPayable: 0,
                                             notes: req.body.notes,
-
                                         })
                                         Invoice.save((error, result) => {
                                             if (error) {
@@ -125,11 +115,10 @@ const CreateInvoice = app.post('/addInvoice', (req, res) => {
 
                 }
             })
-    //     }
-    // })
+          
         }
     }).populate("orderedProductId").populate("customerId")
-  
+
 
 })
 module.exports = CreateInvoice
