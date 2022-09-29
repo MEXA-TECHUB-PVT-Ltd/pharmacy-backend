@@ -218,7 +218,8 @@ const salesOrderSchema = mongoose.Schema({
     salePartsId:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'saleOrderParts'
-    }]
+    }],
+    saleOrderDate:String
 })
 const saleOrderPartsSchema = mongoose.Schema({
 saleOrderId:{
@@ -251,6 +252,13 @@ const orderProductSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'supplyOrder'
     },
+    supplyOrderRefNo:String,
+    SPCategory:String,
+    SPtypeOforder:String,
+    SPdateOfOrder:String,
+    SPorderValidTill:String,
+    SPspecialInstructions:String,
+    SPStatus:String,
     productId:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'product'

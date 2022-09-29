@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const { supplyOrderModel, salesOrderModel, customerModel } = require('../../../schemas')
 const OrderProduct = app.post('/createSalesOrder', (req, res) => {
+  
     supplyOrderModel.findById(req.body.supplyOrderId, (error, result) => {
         if (error) {
             res.send(error)
@@ -35,7 +36,7 @@ const OrderProduct = app.post('/createSalesOrder', (req, res) => {
                                         CustomerName: CustomerName,
                                         ContactPerson: ContactPerson,
                                         PhoneNumber: PhoneNumber,
-                                        saleOrderProducts: salesOrderedproducts
+                                        saleOrderProducts: salesOrderedproducts,
                                     })
                                     newSalesOrder.save((error, result) => {
                                         if (error) {

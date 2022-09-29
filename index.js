@@ -74,6 +74,9 @@ require('./apis/Customers/SalesOrder/saleOrderParts/getAllPartSalesOrder'),
 require('./apis/Customers/SalesOrder/saleOrderParts/updatePartSale'),
 require('./apis/Customers/SalesOrder/saleOrderParts/getSupplyOrderSale'),
 
+// Daily,weekly,Yearly 
+require('./apis/Customers/SupplyOrder/dailySupplyOrder'),
+require('./apis/Customers/SupplyOrder/WeeklySupplyOrder'),
 
 
 

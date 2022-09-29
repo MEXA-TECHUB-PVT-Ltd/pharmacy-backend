@@ -4,14 +4,18 @@ const { supplyOrderModel } = require('../../../schemas')
 
 const CreateSupplyOrder = app.post('/addSupplyOrder', (req, res) => {
     let refNumber = Math.floor((Math.random() * 100000) + 1);
-
+    const dateOfOrder=req.body.dateOfOrder
+//  const Date=dateOfOrder.slice(0,10)
+ const orderValidTill=req.body.orderValidTill
+ const ValidDate=orderValidTill.slice(0,10)
+//  console.log(Date)
     const SupplyOrder = new supplyOrderModel({
         SPCategory:"Advanced Supply Order",
         customerId:req.body.customerId,
         refNumber:refNumber,
         typeOforder:req.body.typeOforder,
-        dateOfOrder:req.body.dateOfOrder,
-        orderValidTill:req.body.orderValidTill,
+        dateOfOrder:dateOfOrder,
+        orderValidTill:ValidDate,
         specialInstructions:req.body.specialInstructions,
         orderedProductId:[],
         Status:'Pending'
