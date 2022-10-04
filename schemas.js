@@ -11,6 +11,13 @@ const productSchema = mongoose.Schema({
     maxRetailPrice:String,
     tradePrice:String
 })
+const companySchema = mongoose.Schema({
+    companyName: String,
+    companyAddress: String,
+    zipCode:String,
+    phone: String,
+    fax: String,
+})
 const InvoiceSchema = mongoose.Schema({
     // customerId:{
     //     type: mongoose.Schema.Types.ObjectId,
@@ -86,22 +93,6 @@ const InvoiceSchema = mongoose.Schema({
     invoiceFurtherTax:String,
     totalPayable:String,
     notes:String,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 })
 const InvoiceProductSchema = mongoose.Schema({
@@ -289,21 +280,20 @@ const staffMemberSchema = mongoose.Schema({
     Salaries:String,
 })
 const productModel = mongoose.model('product', productSchema, 'product')
+const companyModel = mongoose.model('company', companySchema, 'company')
 const customerModel = mongoose.model('customer', customerSchema, 'customer')
 const staffMemberModel = mongoose.model('staffMember', staffMemberSchema, 'staffMember')
 const supplyOrderModel = mongoose.model('supplyOrder', supplyOrderSchema, 'supplyOrder')
 const orderProductModel = mongoose.model('orderProduct', orderProductSchema, 'orderProduct')
 const salesOrderModel = mongoose.model('salesOrder', salesOrderSchema, 'salesOrder')
 const saleOrderPartsModel = mongoose.model('saleOrderParts', saleOrderPartsSchema, 'saleOrderParts')
-
 const CalculateTaxModel = mongoose.model('CalculateTax', CalculateTaxSchema, 'CalculateTax')
 const InvoiceModel = mongoose.model('Invoice', InvoiceSchema, 'Invoice')
 const InvoiceProductModel = mongoose.model('InvoiceProduct', InvoiceProductSchema, 'InvoiceProduct')
 
-
-
 module.exports = {
     productModel,
+    companyModel,
     InvoiceModel,
     customerModel,
     staffMemberModel,

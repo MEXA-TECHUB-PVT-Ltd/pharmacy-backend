@@ -106,14 +106,16 @@ app.use('/staff',
     require('./apis/StaffMembers/getAllDeliveryMan'),
     require('./apis/StaffMembers/getAllSalesMan'),
 
-
-
-
-
-
-
-
-
+)
+////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////Company APIS////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+app.use('/company',
+    require('./apis/Companies/crud/addCompany'),
+    require('./apis/Companies/crud/deleteCompany'),
+    require('./apis/Companies/crud/getAllCompanies'),
+    require('./apis/Companies/crud/getCompany'),
+    require('./apis/Companies/crud/updateCompany'),
 
 
 
@@ -131,11 +133,6 @@ app.use('/invoice',
     require('./apis/Customers/Invoices/InvoiceSales/getAllInvoiceProducts'),
     require('./apis/Customers/Invoices/getInvoiceBySupplId'),
     require('./apis/Customers/Invoices/sortInvoiceByDate'),
-
-
-
-
-
 
 )
 
