@@ -25,7 +25,6 @@ app.use('/inventory',
     require('./apis/Inventory/Products/viewProduct'),
     require('./apis/Inventory/Products/getAllProducts'),
     require('./apis/Inventory/Products/updateProduct'),
-
 )
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////Customer APIS////////////////////////////////////////
