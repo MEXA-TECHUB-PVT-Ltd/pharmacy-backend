@@ -7,8 +7,11 @@ const GetUserInvoiceSupply = app.get('/getAllSupplyInvoices', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            res.json({
+                data: result,
+                count:result.length
+            })
         }
-    }).populate("products").populate("customerId").populate("bookedBy").populate("deliveredBy")
+    }).sort({ $natural: -1 }).populate("products").populate("customerId").populate("bookedBy").populate("deliveredBy")
 })
 module.exports = GetUserInvoiceSupply

@@ -9,6 +9,6 @@ const GetAllCustomers = app.get('/getAllInvoices', (req, res) => {
         } else {
             res.send(result)
         }
-    }).populate("products").populate("customerId")
+    }).sort({ $natural: -1 }).populate("products").populate("customerId")
 })
 module.exports = GetAllCustomers
