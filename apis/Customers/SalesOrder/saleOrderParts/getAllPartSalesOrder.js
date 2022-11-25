@@ -9,6 +9,6 @@ const GetAllSalesOrderParts = app.get('/getAllSalesParts', (req, res) => {
         } else {
             res.send(result)
         }
-    }).populate("productId")
+    }).sort({ $natural: -1 }).populate("productId")
 })
 module.exports = GetAllSalesOrderParts

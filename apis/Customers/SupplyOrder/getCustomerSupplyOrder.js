@@ -7,7 +7,10 @@ const GetSupplyCustomer = app.get('/getCustomerSupplyOrder', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            res.json({
+                data: result,
+                count:result.length
+            })
         }
     }).populate("orderedProductId").populate("salesOrderId").populate("customerId")
 })

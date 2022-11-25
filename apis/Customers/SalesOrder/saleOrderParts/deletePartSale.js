@@ -7,7 +7,9 @@ const RemovePartDelete = app.delete('/removeSaleOrderPart', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.sendStatus(200)
+            res.json({
+                message: "Deleted successfully"
+            })
         }
     })
 })

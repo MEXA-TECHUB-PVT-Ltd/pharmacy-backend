@@ -66,28 +66,18 @@ app.use('/customer',
     require('./apis/Customers/SalesOrder/viewAllSalesOrder'),
     require('./apis/Customers/SalesOrder/viewAllSupplySales'),
     require('./apis/Customers/SalesOrder/viewSalesOrder'),
-//sale orderParts
-require('./apis/Customers/SalesOrder/saleOrderParts/createPartSale'),
-require('./apis/Customers/SalesOrder/saleOrderParts/deletePartSale'),
-require('./apis/Customers/SalesOrder/saleOrderParts/getAllPartSalesOrder'),
-require('./apis/Customers/SalesOrder/saleOrderParts/updatePartSale'),
-require('./apis/Customers/SalesOrder/saleOrderParts/getSupplyOrderSale'),
+    //sale orderParts
+    require('./apis/Customers/SalesOrder/saleOrderParts/createPartSale'),
+    require('./apis/Customers/SalesOrder/saleOrderParts/deletePartSale'),
+    require('./apis/Customers/SalesOrder/saleOrderParts/getAllPartSalesOrder'),
+    require('./apis/Customers/SalesOrder/saleOrderParts/getSaleOrderPart'),
 
-// Daily,weekly,Yearly 
-require('./apis/Customers/SupplyOrder/dailySupplyOrder'),
-require('./apis/Customers/SupplyOrder/WeeklySupplyOrder'),
+    require('./apis/Customers/SalesOrder/saleOrderParts/updatePartSale'),
+    require('./apis/Customers/SalesOrder/saleOrderParts/getSupplyOrderSale'),
 
-
-
-
-
-
-
-
-
-
-
-
+    // Daily,weekly,Yearly 
+    require('./apis/Customers/SupplyOrder/dailySupplyOrder'),
+    require('./apis/Customers/SupplyOrder/WeeklySupplyOrder'),
 
 
 
@@ -102,8 +92,7 @@ app.use('/staff',
     require('./apis/StaffMembers/removeStaffMember'),
     require('./apis/StaffMembers/updateStaffMember'),
     require('./apis/StaffMembers/viewStaffMember'),
-    require('./apis/StaffMembers/getAllDeliveryMan'),
-    require('./apis/StaffMembers/getAllSalesMan'),
+    require('./apis/StaffMembers/getByEmployeeRole'),
 
 )
 ////////////////////////////////////////////////////////////////////////////////

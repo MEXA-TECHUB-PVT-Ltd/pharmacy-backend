@@ -3,7 +3,10 @@ const app = express()
 const { CalculateTaxModel,customerModel} = require('../../../schemas')
 
 const UpdateTaxCustomer = app.put('/updateTaxCustomer', (req, res) => {
-    const totalTax = parseInt(req.body.salesTax) + parseInt(req.body.generalSalesTax) + parseInt(req.body.advanceTax) + parseInt(req.body.furtherTax);
+    if (req.body.salesTax === undefined || req.body.salesTax === '' || req.body.generalSalesTax === undefined || req.body.generalSalesTax === '' || req.body.advanceTax === undefined || req.body.advanceTax === '' || req.body.furtherTax === undefined || req.body.furtherTax === '') {
+        res.json({ message: "Please fill all fields to continue" })
+    } else {
+        const totalTax = parseInt(req.body.salesTax) + parseInt(req.body.generalSalesTax) + parseInt(req.body.advanceTax) + parseInt(req.body.furtherTax);
     const updateData = {
         salesTax: req.body.salesTax,
         generalSalesTax: req.body.generalSalesTax,
@@ -18,7 +21,10 @@ const UpdateTaxCustomer = app.put('/updateTaxCustomer', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            res.json({
+                data: result,
+                message: "Updated successfully"
+            })
             const CustomerId= result.customerId
             const updateData = {
                 applicabletax: totalTax,
@@ -35,5 +41,7 @@ const UpdateTaxCustomer = app.put('/updateTaxCustomer', (req, res) => {
             })
         }
     })
+    }
+    
 })
 module.exports = UpdateTaxCustomer

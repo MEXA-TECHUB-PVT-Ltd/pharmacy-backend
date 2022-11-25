@@ -7,8 +7,11 @@ const GetUserProfile = app.get('/getAllSupplySales', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            res.json({
+                data: result,
+                count:result.length
+            })
         }
-    }).populate("supplyOrderId").populate("saleOrderProducts").populate("salePartsId").populate("customerId")
+    }).sort({ $natural: -1 }).populate("supplyOrderId").populate("saleOrderProducts").populate("salePartsId").populate("customerId")
 })
 module.exports = GetUserProfile

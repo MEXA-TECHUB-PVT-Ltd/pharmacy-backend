@@ -7,7 +7,8 @@ const RemoveCompany = app.delete('/removeCompany', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.sendStatus(200)
+            res.json({ message: "Deleted Successfully" })
+
         }
     })
 })

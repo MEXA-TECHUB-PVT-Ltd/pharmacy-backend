@@ -8,17 +8,28 @@ const CreateSaleOrderPart = app.post('/addSaleOrderPart', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            // res.send(result)supplyOrderId
-            const SO_ref = result.SO_refNumber;
-            const customerId = result.customerId;
-            const CustomerName = result.CustomerName;
-            const ContactPerson = result.ContactPerson;
-            const PhoneNumber = result.PhoneNumber;
-           
-            orderProductModel.findById(req.body.productId, (error, result) => {
-                if (error) {
-                    res.send(error)
-                } else {
+            if(result===null){
+                res.json({
+                    data: result,
+                    message: "Check Sale order Id"
+                })
+            }else{
+                const SO_ref = result.SO_refNumber;
+                const customerId = result.customerId;
+                const CustomerName = result.CustomerName;
+                const ContactPerson = result.ContactPerson;
+                const PhoneNumber = result.PhoneNumber;
+                orderProductModel.findById(req.body.productId, (error, result) => {
+                    if (error) {
+                        res.send(error)
+                    } else {
+                // res.send(result)
+                if(result===null){
+                    res.json({
+                        data: result,
+                        message: "Check Order Product Id"
+                    })
+                }else{
                     const productName = result.productName
                     const companyName = result.companyName
                     const batchNo = result.batchNo
@@ -48,7 +59,10 @@ const CreateSaleOrderPart = app.post('/addSaleOrderPart', (req, res) => {
                         if (error) {
                             res.send(error)
                         } else {
-                            res.send(result)
+                            res.json({
+                                data: result,
+                                message: "Created successfully"
+                            })
                             const updateData = {
                                 $push: {
                                     salePartsId: result._id,
@@ -63,7 +77,11 @@ const CreateSaleOrderPart = app.post('/addSaleOrderPart', (req, res) => {
                         }
                     })
                 }
-            })
+                      
+                    }
+                })
+            }
+           
         }
     }).populate("saleOrderProducts")
 })

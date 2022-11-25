@@ -7,7 +7,17 @@ const GetCustomer = app.get('/getCustomer', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            if(result===null){
+                res.json({
+                    data: result,
+                    message: "No Record for this id "
+                })
+            }else{
+                res.json({
+                    data: result,
+                    message: "Found successfully"
+                })
+            }
         }
     }).populate("CalculateTaxId")
 })

@@ -9,6 +9,6 @@ const GetAllOrderProducts = app.get('/getAllOrderProducts', (req, res) => {
         } else {
             res.send(result)
         }
-    })
+    }).sort({ $natural: -1 })
 })
 module.exports = GetAllOrderProducts

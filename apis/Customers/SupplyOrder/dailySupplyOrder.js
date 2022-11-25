@@ -1,16 +1,20 @@
 const express = require('express')
 const { supplyOrderModel} = require('../../../schemas')
+const moment = require('moment');
 const app = express()
 
 const GetSupplyCustomer = app.get('/getDailySupplyOrder', (req, res) => {
-    const dateOfOrder= req.query.dateOfOrder ;
-    const DateData=dateOfOrder.slice(0,10)
-    supplyOrderModel.find({dateOfOrder : DateData    }, (error, result) => {
+    const dateOfOrder= req.body.dateOfOrder ;
+    supplyOrderModel.find({dateOfOrder : moment(dateOfOrder).format("DD/MM/YYYY"),    }, (error, result) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            res.json({
+                data: result,
+                count:result.length
+            })
         }
-    }).populate("orderedProductId").populate("salesOrderId").populate("customerId")
+    })
+    .populate("orderedProductId").populate("salesOrderId").populate("customerId")
 })
 module.exports = GetSupplyCustomer

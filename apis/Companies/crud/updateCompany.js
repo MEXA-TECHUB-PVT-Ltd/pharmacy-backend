@@ -17,7 +17,10 @@ const UpdateCompany = app.put('/updateCompany', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            res.json({
+                data: result,
+                message: "Updated successfully"
+            })
         }
     })
 })
