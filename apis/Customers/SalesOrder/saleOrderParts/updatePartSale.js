@@ -14,7 +14,10 @@ const UpdateSaleOrderPart = app.put('/updateSaleOrderPart', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            res.json({
+                data: result,
+                message:"Updated successfully"
+            })
         }
     })
 })

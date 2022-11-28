@@ -1,14 +1,17 @@
 const express = require('express')
 const app = express()
+const moment = require('moment');
 const { staffMemberModel } = require('../../schemas')
 
 const CreateStaff = app.post('/addStaffMember', (req, res) => {
+    const Createddate = req.body.employeeDob;
+
     const Staff = new staffMemberModel({
         employeeName: req.body.employeeName,
         employeeCnic: req.body.employeeCnic,
         employeeAge: req.body.employeeAge,
         employeeGender: req.body.employeeGender,
-        employeeDob: req.body.employeeDob,
+        employeeDob: moment(Createddate).format("DD/MM/YYYY"),
         employeeQualification: req.body.employeeQualification,
         employeeRoles: req.body.employeeRoles,
         attendenceRecord: req.body.attendenceRecord,
@@ -19,7 +22,10 @@ const CreateStaff = app.post('/addStaffMember', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            res.json({
+                data: result,
+                message: "Staff Member Created successfully"
+            })
         }
     })
 

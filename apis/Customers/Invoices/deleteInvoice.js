@@ -7,7 +7,9 @@ const RemoveInvoice = app.delete('/removeInvoice', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.sendStatus(200)
+            res.json({
+                message: "Deleted successfully"
+            })
         }
     })
 })

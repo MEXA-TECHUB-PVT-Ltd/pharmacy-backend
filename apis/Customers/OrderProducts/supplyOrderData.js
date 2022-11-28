@@ -7,7 +7,10 @@ const GetUserProfile = app.get('/getProductSupplyOrder', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            res.json({
+                data: result,
+                count:result.length
+            })
         }
     })
 })

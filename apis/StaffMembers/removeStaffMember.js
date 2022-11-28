@@ -8,7 +8,7 @@ const RemoveProduct = app.delete('/removeStaff', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.sendStatus(200)
+            res.json({ message: "Deleted Successfully" })
         }
     })
 })

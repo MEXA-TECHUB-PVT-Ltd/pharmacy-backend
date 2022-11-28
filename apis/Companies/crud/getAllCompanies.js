@@ -9,6 +9,6 @@ const GetAllCompany = app.get('/getAllCompanies', (req, res) => {
         } else {
             res.send(result)
         }
-    })
+    }).sort({ $natural: -1 })
 })
 module.exports = GetAllCompany

@@ -6,9 +6,6 @@ const UpdateCustomer = app.put('/updateOrderProduct', (req, res) => {
     const updateData = {
         packing: req.body.packing,
         ratePerUnit: req.body.ratePerUnit,
-        quantity: req.body.quantity,
-        amount: req.body.amount,
-        totalAmount: req.body.totalAmount
     }
     const options = {
         new: true
@@ -17,7 +14,10 @@ const UpdateCustomer = app.put('/updateOrderProduct', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            res.json({
+                data: result,
+                message:"Updated sucessfully"
+            })
         }
     })
 })

@@ -1,8 +1,10 @@
 const express = require('express')
+const moment = require('moment');
 const app = express()
 const { productModel } = require('../../../schemas')
 
 const CreateProduct = app.post('/addProduct', (req, res) => {
+    const Createddate = req.body.expiryDate;
     const maxRetailPrice = req.body.maxRetailPrice;
     const tradePrice = maxRetailPrice * 0.85;
     // console.log(tradePrice)
@@ -13,7 +15,7 @@ const CreateProduct = app.post('/addProduct', (req, res) => {
         registrationNo: req.body.registrationNo,
         genericName: req.body.genericName,
         companyName: req.body.companyName,
-        expiryDate: req.body.expiryDate,
+        expiryDate: moment(Createddate).format("DD/MM/YYYY"),
         batchNo: req.body.batchNo,
         maxRetailPrice: req.body.maxRetailPrice,
         tradePrice: tradePrice,
@@ -23,7 +25,10 @@ const CreateProduct = app.post('/addProduct', (req, res) => {
         if (error) {
             res.send(error)
         } else {
-            res.send(result)
+            res.json({
+                data: result,
+                message: "Product Created successfully"
+            })
         }
     })
 

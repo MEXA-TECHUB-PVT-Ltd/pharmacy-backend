@@ -22,10 +22,11 @@
     "find-hashtags": "^1.0.1",
     "get-video-duration": "^4.1.0",
     "moment": "^2.29.4",
+    "moment-range": "^4.0.2",
     "mongoose": "^6.3.4",
     "multer": "^1.4.4",
     "nodemailer": "^6.7.5",
-    "nodemon": "^2.0.19",
+    "nodemon": "^2.0.20",
     "path": "^0.12.7",
     "uuid": "^8.3.2"
   }
